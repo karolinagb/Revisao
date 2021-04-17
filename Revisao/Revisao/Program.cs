@@ -4,6 +4,7 @@ namespace Revisao
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             Aluno[] alunos = new Aluno[5];
@@ -13,6 +14,7 @@ namespace Revisao
 
             while (opcao.ToUpper() != "X")
             {
+                
                 switch (opcao)
                 {
                     case "1":
@@ -48,6 +50,44 @@ namespace Revisao
                         break;
                     case "3":
                         //TO DO: Calcular média geral
+                        decimal notaTotal = 0;
+                        var numAlunos = 0;
+                        for(int i = 0; i < alunos.Length; i++)
+                        {
+                            if(alunos[i] != null)
+                            {
+                                notaTotal += alunos[i].Nota;
+                                numAlunos++;
+                            }
+                        }
+
+                        var mediaGeral = notaTotal / numAlunos;
+
+                        Conceito conceitoGeral = 0;
+
+                        if (mediaGeral <2)
+                        {
+                            conceitoGeral = Conceito.E;
+                        }
+                        else if (mediaGeral >=3 && mediaGeral < 4)
+                        {
+                            conceitoGeral = Conceito.D;
+                        }
+                        else if (mediaGeral >=4 && mediaGeral < 6)
+                        {
+                            conceitoGeral = Conceito.C;
+                        }
+                        else if (mediaGeral >= 6 && mediaGeral<8)
+                        {
+                            conceitoGeral = Conceito.B;
+                        }
+                        else if (mediaGeral >= 8)
+                        {
+                            conceitoGeral = Conceito.A;
+                        }
+
+                        Console.WriteLine($"Média geral dos alunos é: {mediaGeral} - Conceito: {conceitoGeral}");
+
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
